@@ -6,8 +6,8 @@ import { InfoPage } from "./pages/InfoPage";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />}>
-      <Route index element={<LandingPage />} />
+    <Route path="/" element={<App  />}>
+      <Route index element={<LandingPage  />} />
       <Route path="search" element={<SearchPage />} />
       <Route path="info" element={<InfoPage />} />
     </Route>

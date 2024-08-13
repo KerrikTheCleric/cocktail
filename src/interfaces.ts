@@ -1,7 +1,8 @@
 export interface ICocktail {
-    title:  string,
+    title: string
    };
 
    export interface ICocktailContext {
     cocktails: ICocktail[];
+    fetchCocktail: () => void;
   }
