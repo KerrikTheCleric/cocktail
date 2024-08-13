@@ -1,0 +1,10 @@
+.header .links {
+  display: flex;
+  gap: 2rem;
+}
+
+.header .links .link {
+  color: black;
+  font-size: 1.5rem;
+  text-decoration: none;
+}

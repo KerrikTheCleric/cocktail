@@ -1,5 +1,14 @@
-import "../css/App.css";
+import { ReactElement } from "react";
+import { Outlet } from "react-router-dom";
+import { CocktailProvider } from "../context/CocktailProvider.tsx";
+import { Header } from "./Header.tsx";
 
-export function App() {
-  return <>This is the App Component!</>;
+export function App(): ReactElement {
+  return (
+    <>
+      <Header />
+      <CocktailProvider>
+        <Outlet />
+      </CocktailProvider>
+    </>);
 }
