@@ -9,8 +9,11 @@ interface ICocktailProviderProps {
 export const CocktailContext = createContext<ICocktailContext>({} as ICocktailContext);
 
 export function CocktailProvider({ children }: ICocktailProviderProps): ReactElement {
-  const [cocktails, setCocktails] = useState<ICocktail[]>([]);
-  //const { isPending, error, data, isFetching } = useQuery({ queryKey: ['cocktail'], queryFn: fetchCocktail })
+  const [landingCocktail, setCocktails] = useState<ICocktail>({
+    title: "Loading",
+    imageLink: ""
+  });
+  //const { isPending, error, landingCocktail, isFetching } = useQuery({ queryKey: ['cocktail'], queryFn: fetchCocktail })
 
 
   async function fetchCocktail() {
@@ -21,14 +24,15 @@ export function CocktailProvider({ children }: ICocktailProviderProps): ReactEle
 
     response.json().then((data) => {
       const newCocktail: ICocktail = {
-        title: data.drinks[0].strDrink
+        title: data.drinks[0].strDrink,
+        imageLink: data.drinks[0].strDrinkThumb
       }
-      setCocktails([...cocktails, newCocktail]);
+      setCocktails(newCocktail);
     })
   }
 
   const values: ICocktailContext = {
-    cocktails,
+    landingCocktail,
     fetchCocktail
   };
 

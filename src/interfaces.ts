@@ -1,8 +1,9 @@
 export interface ICocktail {
-    title: string
+    title: string,
+    imageLink: string
    };
 
    export interface ICocktailContext {
-    cocktails: ICocktail[];
+    landingCocktail: ICocktail;
     fetchCocktail: () => void;
   }

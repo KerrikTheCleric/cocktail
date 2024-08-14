@@ -1,11 +1,10 @@
 import { ReactElement } from "react";
-//import Cocktail from "../components/Cocktail.tsx";
-
+import LandingCocktailCard from "../components/LandingCocktailCard.tsx";
 import { useCocktailLogic } from "../hooks/useCocktailLogic.ts";
 
 
 export function LandingPage(): ReactElement {
-  const { cocktails } = useCocktailLogic();
+  const { landingCocktail } = useCocktailLogic();
   const { fetchCocktail } = useCocktailLogic();
 
 
@@ -14,11 +13,12 @@ export function LandingPage(): ReactElement {
     <section>
       <h1>Landing Page</h1>
       <button type="button" onClick={() => fetchCocktail()}>
-        Fetch
+        Random Cocktail
       </button>
-      {cocktails.map((c) => (
-        <h2 key={crypto.randomUUID()}>{c.title}</h2>
-      ))}
+      
+        <LandingCocktailCard cocktail={landingCocktail}/>
+         {/* <h2 key={crypto.randomUUID()}>{c.title}</h2> */}
+      
     </section>
   );
 
