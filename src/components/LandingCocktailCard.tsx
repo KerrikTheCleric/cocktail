@@ -1,21 +1,17 @@
 import { ReactElement, useEffect } from "react";
-import { useCocktailLogic } from "../hooks/useCocktailLogic.ts";
-
 import { ICocktail } from "../interfaces.ts";
 import "../css/LandingCocktailCard.css";
 
 interface ILandingCocktailCardProps {
     cocktail: ICocktail;
+    onfetchLandingCocktail: () => void;
 }
 
-export default function LandingCocktailCard({ cocktail }: ILandingCocktailCardProps): ReactElement {
-
-    const { fetchCocktail } = useCocktailLogic();
+export default function LandingCocktailCard({ cocktail, onfetchLandingCocktail }: ILandingCocktailCardProps): ReactElement {
 
     useEffect(() => {
-        fetchCocktail();
+        onfetchLandingCocktail();
     }, []);
-
     return (
         <section className="landingCocktailCardSection">
             <h1>{cocktail.title}</h1>

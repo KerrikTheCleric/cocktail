@@ -5,5 +5,11 @@ export interface ICocktail {
 
    export interface ICocktailContext {
     landingCocktail: ICocktail;
-    fetchCocktail: () => void;
+    cocktailSearchResults: ICocktail[];
+    loadingSearchResults: boolean;
+    drinksPerPage: number;
+    currentPage: number;
+    fetchLandingCocktail: () => void;
+    fetchCocktailSearch: (searchTerm: string) => void;
+    modifyCurrentPage: (currentPage: number) => void;
   }
