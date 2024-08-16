@@ -9,7 +9,6 @@ export function Header(): ReactElement {
       <div className="links">
         <Link className="link" to="/">Welcome</Link>
         <Link className="link" to="/search">Search</Link>
-        <Link className="link" to="/info">Cocktail Info</Link>
       </div>
     </header>
   );

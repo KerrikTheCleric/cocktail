@@ -1,4 +1,5 @@
 import { ReactElement, useEffect } from "react";
+import { Link } from "react-router-dom";
 //import { useCocktailLogic } from "../hooks/useCocktailLogic.ts";
 import { ICocktail } from "../interfaces.ts";
 
@@ -49,12 +50,12 @@ export default function SearchResultsList({ cocktailSearchResults, isLoading, dr
         currentCocktailResultsList = cocktailSearchResults.slice(startingIndex, (startingIndex + drinksPerPage))
     }
 
-    
-
-
     const listItems = currentCocktailResultsList.map((cocktail) =>
         <li key={crypto.randomUUID()}>
-            <a href="https://www.w3schools.com" target="_blank"> <h3>{cocktail.title}</h3></a>
+            {/* <a href="https://www.w3schools.com" target="_blank"> <h3>{cocktail.title}</h3></a> */}
+            <Link to="/info" state={{ id: cocktail.id }}>
+                <h3>{cocktail.title}</h3>
+            </Link>
         </li>
     );
 
