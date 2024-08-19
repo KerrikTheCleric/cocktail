@@ -1,6 +1,5 @@
 import { ReactElement, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import { ICocktail } from "../interfaces.ts";
 import "../css/LandingCocktailCard.css";
 
@@ -22,11 +21,19 @@ export default function LandingCocktailCard({ cocktail, isLoading, onfetchLandin
 
     return (
         <section className="landingCocktailCardSection">
-            <h1>{cocktail.title}</h1>
+            <div className="centeredTextDiv">
+                <h1 className="centeredText">{cocktail.title}</h1>
+            </div>
+
             <img src={cocktail.imageLink} alt={cocktail.title} />
-            <Link to="/info" state={{ id: cocktail.id }}>
-                <h3>See More</h3>
-            </Link>
+            <button className="bottomMiddleButtonOne" onClick={() => onfetchLandingCocktail()}>
+                <span className="material-symbols-outlined" > restart_alt</span>
+            </button>
+            <div className="centeredTextDiv">
+                <Link to="/info" state={{ id: cocktail.id }}>
+                    <h3 className="centeredText">See More</h3>
+                </Link>
+            </div>
         </section>
     );
 }

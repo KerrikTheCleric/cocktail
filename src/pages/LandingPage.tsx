@@ -5,16 +5,12 @@ import "../css/LandingPage.css"
 
 export function LandingPage(): ReactElement {
   const { landingCocktail } = useCocktailLogic();
-  const {loadingLandingCocktail} = useCocktailLogic();
+  const { loadingLandingCocktail } = useCocktailLogic();
   const { fetchLandingCocktail } = useCocktailLogic();
 
   return (
     <section className="landingPageMainSection">
-      <h1>Landing Page</h1>
-      <button type="button" onClick={() => fetchLandingCocktail()}>
-        Random Cocktail
-      </button>
-        <LandingCocktailCard cocktail={landingCocktail} isLoading={loadingLandingCocktail} onfetchLandingCocktail={fetchLandingCocktail}/>      
+      <LandingCocktailCard cocktail={landingCocktail} isLoading={loadingLandingCocktail} onfetchLandingCocktail={fetchLandingCocktail} />
     </section>
   );
 

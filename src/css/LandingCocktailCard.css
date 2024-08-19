@@ -1,6 +1,5 @@
 .landingCocktailCardSection{
     background-color: salmon;
-    /* box-shadow: 0px 3px 5px 0px green; */
     box-shadow: 0px 3px 5px 0px black;
     display: inline-grid;
 }

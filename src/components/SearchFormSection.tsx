@@ -1,7 +1,6 @@
 import { ReactElement, useState, FormEventHandler } from "react";
 import { ICocktail } from "../interfaces.ts";
 import SearchResultsList from "./SearchResultsList.tsx";
-import "../css/SearchFormSection.css";
 
 interface ISearchFormSectionProps {
     cocktailSearchResults: ICocktail[];
@@ -10,17 +9,15 @@ interface ISearchFormSectionProps {
     currentPage: number;
     onFetchCocktailSearch: (searchTerm: string) => void;
     onModifyCurrentPage: (currentPage: number) => void;
-}  
+}
 
-export default function SearchFormSection({cocktailSearchResults, isLoading, drinksPerPage, currentPage, onFetchCocktailSearch, onModifyCurrentPage}: ISearchFormSectionProps): ReactElement {
+export default function SearchFormSection({ cocktailSearchResults, isLoading, drinksPerPage, currentPage, onFetchCocktailSearch, onModifyCurrentPage }: ISearchFormSectionProps): ReactElement {
 
     const [nameInputValue, setName] = useState<string>("");
 
     const handleOnsubmit: FormEventHandler<HTMLFormElement> = (e) => {
-      onFetchCocktailSearch(nameInputValue);
-
-      e.preventDefault();
-  
+        onFetchCocktailSearch(nameInputValue);
+        e.preventDefault();
     };
 
     return (
@@ -28,11 +25,11 @@ export default function SearchFormSection({cocktailSearchResults, isLoading, dri
             <form onSubmit={handleOnsubmit}>
                 <label>
                     Cocktail:
-                    <input type="text" name="cocktail" onChange={(e) => setName(e.target.value)}/>
+                    <input type="text" name="cocktail" onChange={(e) => setName(e.target.value)} />
                 </label>
                 <input type="submit" value="Submit" />
             </form>
-            <SearchResultsList cocktailSearchResults={cocktailSearchResults} isLoading={isLoading} drinksPerPage={drinksPerPage} currentPage={currentPage} onModifyCurrentPage={onModifyCurrentPage}/>
+            <SearchResultsList cocktailSearchResults={cocktailSearchResults} isLoading={isLoading} drinksPerPage={drinksPerPage} currentPage={currentPage} onModifyCurrentPage={onModifyCurrentPage} />
         </section>
     );
 }

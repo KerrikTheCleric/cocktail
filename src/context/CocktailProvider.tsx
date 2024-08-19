@@ -1,5 +1,4 @@
 import { createContext, ReactElement, ReactNode, useState } from "react";
-//import { useQuery } from '@tanstack/react-query'
 import { ICocktail, ICocktailContext } from "../interfaces";
 
 interface ICocktailProviderProps {
@@ -36,8 +35,9 @@ export function CocktailProvider({ children }: ICocktailProviderProps): ReactEle
   const [drinksPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
 
-  //const { isPending, error, landingCocktail, isFetching } = useQuery({ queryKey: ['cocktail'], queryFn: fetchCocktail })
-
+  /**
+   * Fetches a cocktail for the landing page stored as a low-detail object.
+   */
 
   async function fetchLandingCocktail() {
     setLoadingLandingCocktail(true);
@@ -59,8 +59,14 @@ export function CocktailProvider({ children }: ICocktailProviderProps): ReactEle
       }
       setLandingCocktail(newCocktail);
     }).catch((e) => { console.log(e); alert("No random drink found.") })
+
     setLoadingLandingCocktail(false);
   }
+
+  /**
+   * Fetches all cocktails matching the search term and stores then as a low-detail array.
+   * @param searchTerm The inputted search term.
+   */
 
   async function fetchCocktailSearch(searchTerm: string) {
     setLoadingSearchResults(true);
@@ -70,7 +76,6 @@ export function CocktailProvider({ children }: ICocktailProviderProps): ReactEle
       throw new Error('Network response was not ok');
     }
 
-    
     response.json().then((data) => {
 
       setCocktailSearchResults([]);
@@ -89,15 +94,17 @@ export function CocktailProvider({ children }: ICocktailProviderProps): ReactEle
         }
         newArray.push(newCocktail);
       }
-
-      //console.log(newArray);
-
       setCocktailSearchResults(newArray);
     }).catch((e) => { console.log(e); alert("No drinks found.") })
 
     setLoadingSearchResults(false);
     setCurrentPage(1);
   }
+
+  /**
+   * Fetches a cocktail using the provided ID and stores it as a detailed object.
+   * @param searchId The ID to fetch a cocktail for.
+   */
 
   async function fetchDetailedCocktail(searchId: string) {
     setLoadingDetailedCocktail(true);
@@ -161,19 +168,24 @@ export function CocktailProvider({ children }: ICocktailProviderProps): ReactEle
       newCocktail.measurements[12] = data.drinks[0].strMeasure13
       newCocktail.measurements[13] = data.drinks[0].strMeasure14
       newCocktail.measurements[14] = data.drinks[0].strMeasure15
+
+      // Filters out empty fields from the array, effectively removing useless list items for both ingredients and measurements, making sure they align when rendered.
       
       newCocktail.ingredients = newCocktail.ingredients.filter((ingredient) => ingredient !== null);
 
-
-      //console.log(newCocktail);
-
       setDetailedCocktail(newCocktail);
     }).catch((e) => { console.log(e); alert("No drink with that ID found.") })
+
     setLoadingDetailedCocktail(false);
   }
 
-  async function modifyCurrentPage(currentPage: number){
-    setCurrentPage(currentPage);
+  /**
+   * Changes the current page on the search page.
+   * @param newPage The new page.
+   */
+
+  async function modifyCurrentPage(newPage: number){
+    setCurrentPage(newPage);
   }
 
   const values: ICocktailContext = {

@@ -1,3 +1,13 @@
 .landingPageMainSection{
     display: table-caption;
+    margin-left: 25rem;
+}
+
+.centeredTextDiv{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.centeredText{
+    font-size: x-large;
 }
